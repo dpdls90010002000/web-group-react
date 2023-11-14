@@ -1,5 +1,3 @@
-
-
 import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
@@ -10,8 +8,6 @@ import Template from './../template.js'
 import userRoutes from './routes/user.routes.js'
 import productRoutes from './routes/product.routes.js'
 import categoryRoutes from './routes/category.routes.js'
-
-
 
 const app = express()
 //...
