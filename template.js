@@ -3,11 +3,10 @@ export default () => {
     <html lang="en"> 
     <head>
     <meta charset="utf-8">
-    <title>MERN Skeleton</title> 
+    <title>ShoeLocker</title> 
     </head>
     <body>
-    <div id="root">Hello World</div> 
+    <div id="root">Welcome to ShoeLocker!</div> 
     </body>
     </html>` 
-    }
-    
+}
