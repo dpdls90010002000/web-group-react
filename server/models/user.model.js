@@ -17,45 +17,32 @@ const UserSchema = new mongoose.Schema({
     required: 'Email is required', 
   },
   
+  address:{
+    type: String,
+    required: 'Address is required'
+   },
+   
+   phone:{
+    type: String,
+    trim: true,
+    required: 'Phone is required'
+   },
   
   created: {
     type: Date,
     default: Date.now, 
   },
   
-  
   updated: {
     type: Date,
     default: Date.now, 
   },
   
-  
   hashed_password: {
     type: String,
     required: 'Password is required', 
   },
-  
-  
   salt: String,
-  
-
-  username: {
-    type: String,
-    unique: 'Username already exists', 
-    trim: true,
-  },
-  bio: {
-    type: String,
-    maxlength: 160, 
-  },
-  profilePicture: {
-    type: String, 
-  },
-  
-  isAdmin: {
-    type: Boolean,
-    default: false, 
-  },
 });
 
 
