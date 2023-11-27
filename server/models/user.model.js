@@ -16,12 +16,12 @@ const UserSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: 'Address is required',
+    // required: 'Address is required',
   },
   phone: {
     type: String,
     trim: true,
-    required: 'Phone is required',
+    // required: 'Phone is required',
   },
   created: {
     type: Date,
