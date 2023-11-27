@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import compress from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';
-import path from 'path';
+// import path from 'path';
 // import React from 'react'; // Import React
 // import ReactDOMServer from 'react-dom/server'; // Import ReactDOMServer
 // import { StaticRouter } from 'react-router-dom'; // Import StaticRouter from react-router-dom
@@ -21,12 +21,16 @@ const CURRENT_WORKING_DIR = process.cwd();
 // devBundle.compile(app);
 
 // ...
-app.get('/', (req, res) => {
-    res.status(200).send(Template()) 
-})
+// app.get('/', (req, res) => {
+//     res.status(200).send(Template()) 
+// })
 // ...   
 // Middleware
-app.use(express.static(path.join(CURRENT_WORKING_DIR, 'dist')));
+// app.use('/dist',express.static(path.join(CURRENT_WORKING_DIR, 'dist')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/', userRoutes);
+app.use('/', authRoutes);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -34,8 +38,7 @@ app.use(compress());
 app.use(helmet());
 app.use(cors());
 // Routes
-app.use('/', userRoutes);
-app.use('/', authRoutes);
+
 
 app.use((err, req, res, next) => {
  if (err.name === 'UnauthorizedError') {

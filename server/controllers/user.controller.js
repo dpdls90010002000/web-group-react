@@ -1,6 +1,8 @@
 import User from '../models/user.model.js';
 import extend from 'lodash/extend.js';
-import errorHandler from './error.controller.js';
+// import errorHandler from './error.controller.js';
+import errorHandler from './../helpers/dbErrorHandler.js';
+import request from 'request'
 import config from './../../config/config.js'
 import stripe from 'stripe'
 // import authController from './auth.controller.js';

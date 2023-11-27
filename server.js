@@ -7,9 +7,15 @@ mongoose.connect(config.mongoUri, {
   useUnifiedTopology: true
 }).then(() => {
   console.log("Connected to the database!");
-}).catch((err) => {
-  throw new Error(`Unable to connect to the database: ${config.mongoUri}`);
 });
+// }).catch((err) => {
+//   throw new Error(`Unable to connect to the database: ${config.mongoUri}`);
+// });
+mongoose.connection.on('error',()=>{
+  throw new Error(`Unable to connect to the database: ${config.mongoUri}`);
+}
+)
+
 /*
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to ShoeStore application." });

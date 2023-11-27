@@ -59,22 +59,24 @@ UserSchema.path('hashed_password').validate(function(v) {
 
 UserSchema.methods = {
   authenticate: function(plainText) {
-    if (!this.salt || !this.hashed_password) {
-      return false;
-    }
-    const hashedPassword = this.encryptPassword(plainText);
+    // if (!this.salt || !this.hashed_password) {
+    //   return false;
+    // }
+    // const hashedPassword = this.encryptPassword(plainText);
   
-    console.log('Entered Password:', plainText);
-    console.log('Stored Hashed Password:', this.hashed_password);
-    console.log('Generated Hashed Password:', hashedPassword);
+    // console.log('Entered Password:', plainText);
+    // console.log('Stored Hashed Password:', this.hashed_password);
+    // console.log('Generated Hashed Password:', hashedPassword);
   
-    return hashedPassword === this.hashed_password;
+    return this.encryptPassword(plainText) === this.hashed_password;
   },
   
   encryptPassword: function(password) {
-    if (!this.salt || !password) return '';
+    // if (!this.salt || !password) return '';
+    if (!password) return '';
     try {
-      const hashedPassword = crypto
+      // const hashedPassword = crypto
+      return crypto
         .createHmac('sha1', this.salt)
         .update(password)
         .digest('hex');
