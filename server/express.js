@@ -9,9 +9,10 @@ import path from 'path';
 // import ReactDOMServer from 'react-dom/server'; // Import ReactDOMServer
 // import { StaticRouter } from 'react-router-dom'; // Import StaticRouter from react-router-dom
 // import { ServerStyleSheets, ThemeProvider } from '@material-ui/core'; // Import MUI components if used
-import Template from './../template.js';
+// import Template from './../template.js';
 import userRoutes from './routes/user.routes.js';
 import authRoutes from './routes/auth.routes.js';
+
 // import staticRouter from 'react'
 
 // import devBundle from './devBundle';
@@ -35,6 +36,7 @@ app.use(cors());
 // Routes
 app.use('/', userRoutes);
 app.use('/', authRoutes);
+
 app.use((err, req, res, next) => {
  if (err.name === 'UnauthorizedError') {
  res.status(401).json({ "error": err.name + ": " + err.message });
