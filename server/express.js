@@ -9,7 +9,7 @@ import helmet from 'helmet';
 // import ReactDOMServer from 'react-dom/server'; // Import ReactDOMServer
 // import { StaticRouter } from 'react-router-dom'; // Import StaticRouter from react-router-dom
 // import { ServerStyleSheets, ThemeProvider } from '@material-ui/core'; // Import MUI components if used
-// import Template from './../template.js';
+import Template from './../template.js';
 import userRoutes from './routes/user.routes.js';
 import authRoutes from './routes/auth.routes.js';
 
@@ -21,9 +21,9 @@ const CURRENT_WORKING_DIR = process.cwd();
 // devBundle.compile(app);
 
 // ...
-// app.get('/', (req, res) => {
-//     res.status(200).send(Template()) 
-// })
+app.get('/', (req, res) => {
+    res.status(200).send(Template()) 
+})
 // ...   
 // Middleware
 // app.use('/dist',express.static(path.join(CURRENT_WORKING_DIR, 'dist')));

@@ -1,25 +1,26 @@
-import { createTheme } from '@material-ui/core/styles' 
-import { pink } from '@material-ui/core/colors'
-const theme = createTheme({ 
-typography: {
-useNextVariants: true, 
-},
-palette: {
-primary: {
-light: '#5c67a3', 
-main: '#3f4771', 
-dark: '#2e355b', 
-contrastText: '#fff',
-},
-secondary: {
-light: '#ff79b0', 
-main: '#ff4081', 
-dark: '#c60055', 
-contrastText: '#000',
-},
-openTitle: '#3f4771', 
-protectedTitle: pink['400'], 
-type: 'light'
-} 
-})
-export default theme
+import { createTheme } from '@material-ui/core/styles';
+
+const theme = createTheme({
+  typography: {
+    useNextVariants: true,
+  },
+  palette: {
+    primary: {
+      light: '#fff',       // Light gray
+      main: '#000',        // Black
+      dark: '#ccc',        // Dark gray
+      contrastText: '#fff', // White
+    },
+    secondary: {
+      light: '#ccc',       // Light gray
+      main: '#000',        // Black
+      dark: '#888',        // Dark gray
+      contrastText: '#fff', // White
+    },
+    openTitle: '#000',      // Black
+    protectedTitle: '#000',  // Black
+    type: 'light',          // Light theme
+  },
+});
+
+export default theme;

@@ -72,7 +72,6 @@ import theme from '../theme';
 
 const App = () => {
   React.useEffect(() => {
-    
     // Clean up server-side injected JSS styles
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {

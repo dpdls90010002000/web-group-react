@@ -56,7 +56,7 @@ return (
 image={unicornbikeImg} title="Unicorn Bicycle"/>
 <CardContent>
 <Typography variant="body2" component="p"> 
-Welcome to the MERN Skeleton home page.
+Welcome to Shoe Locker home page.
 </Typography> 
 </CardContent>
 </Card> 
