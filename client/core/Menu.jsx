@@ -10,6 +10,8 @@ import {Link, withRouter} from 'react-router-dom'
 import CartIcon from '@material-ui/icons/ShoppingCart'
 import Badge from '@material-ui/core/Badge'
 import cart from './../cart/cart-helper'
+import TextField from '@material-ui/core/TextField'
+import Logo from './../assets/images/unicornbikeImg.jpg'
 
 const isActive = (history, path) => {
   if (history.location.pathname == path)
@@ -25,7 +27,9 @@ const isPartActive = (history, path) => {
 }
 const Menu = withRouter(({history}) => (
   <AppBar position="static">
-    <Toolbar>
+    <Toolbar style={{ height: '90px' }}>
+    <img src={Logo} alt="Logo" style={{ marginRight: '10px', height: '90px' }} />
+
       <Typography variant="h6" color="inherit">
         MERN Marketplace
       </Typography>
@@ -35,21 +39,38 @@ const Menu = withRouter(({history}) => (
             <HomeIcon/>
           </IconButton>
         </Link>
-        <Link to="/shops/all">
-          <Button style={isActive(history, "/shops/all")}>All Shops</Button>
+        <Link to="/shops/NA">
+          <Button style={isActive(history, "/shops/all")}>Product</Button>
         </Link>
-        <Link to="/cart">
+        <Link to="/shops/NA">
+          <Button style={isActive(history, "/shops/all")}>Resell</Button>
+        </Link> 
+        <TextField
+        type="text"
+        label="Search"
+        margin="dense"
+        variant="outlined"
+        style={{
+          marginLeft: '10px',
+          width: '200px',
+          backgroundColor: 'white',
+        }}
+      />
+              <Link to="/shops/NA">
+          <Button style={isActive(history, "/shops/all")}>Search</Button>
+        </Link> 
+      </div>
+      <div style={{'position':'absolute', 'right': '10px'}}><span style={{'float': 'right'}}>
+      {
+        !auth.isAuthenticated() && (<span>
+                  <Link to="/cart">
           <Button style={isActive(history, "/cart")}>
             Cart
             <Badge color="secondary" invisible={false} badgeContent={cart.itemTotal()} style={{'marginLeft': '7px'}}>
               <CartIcon />
             </Badge>
           </Button>
-        </Link>      
-      </div>
-      <div style={{'position':'absolute', 'right': '10px'}}><span style={{'float': 'right'}}>
-      {
-        !auth.isAuthenticated() && (<span>
+        </Link>  
           <Link to="/signup">
             <Button style={isActive(history, "/signup")}>Sign up
             </Button>
