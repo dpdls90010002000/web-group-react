@@ -3,15 +3,15 @@
 // Example: const SomeModule = require('some-module');
 // Define your controller function
 function handleError(req, res) {
- 
-    
+
+
 }
 function getErrorMessage(errMsg) {
-console.log(errMsg);
+    console.log(errMsg);
 }
 
 
-export default  {
+export default {
     handleError: handleError,
-    getErrorMessage:getErrorMessage
+    getErrorMessage: getErrorMessage
 };

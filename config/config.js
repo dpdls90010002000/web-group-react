@@ -9,15 +9,15 @@
 //     '/mernproject' 
 //     }
 //     export default config
-    
 
-    const config = {
-        env: "development",
-        port: 3000,
-        jwtSecret: "YOUR_secret_key",
-        mongoUri:
-          "mongodb+srv://dpdls300:HBek6i66lX7noA3W@yeinan.zy7tzqm.mongodb.net/ShoesLocker?retryWrites=true&w=majority",
-      };
-      export default config;
 
-    //user,product,category
+const config = {
+  env: "development",
+  port: 3000,
+  jwtSecret: "YOUR_secret_key",
+  mongoUri:
+    "mongodb+srv://dpdls300:HBek6i66lX7noA3W@yeinan.zy7tzqm.mongodb.net/ShoesLocker?retryWrites=true&w=majority",
+};
+export default config;
+
+//user,product,category

@@ -14,14 +14,20 @@ const UserSchema = new mongoose.Schema({
     match: [/.+\@.+\..+/, 'Please fill a valid email address'],
     required: 'Email is required',
   },
+  seller: {
+    type: Boolean,
+    default: false
+  },
+  photo: {
+    data: Buffer,
+    contentType: String
+  },
   address: {
     type: String,
-    // required: 'Address is required',
   },
   phone: {
     type: String,
     trim: true,
-    // required: 'Phone is required',
   },
   created: {
     type: Date,
@@ -39,16 +45,17 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.virtual('password')
-  .set(function(password) {
+  .set(function (password) {
     this._password = password;
     this.salt = this.makeSalt();
     this.hashed_password = this.encryptPassword(password);
+    console.log(this.hashed_password)
   })
-  .get(function() {
+  .get(function () {
     return this._password;
   });
 
-UserSchema.path('hashed_password').validate(function(v) {
+UserSchema.path('hashed_password').validate(function (v) {
   if (this._password && this._password.length < 6) {
     this.invalidate('password', 'Password must be at least 6 characters.');
   }
@@ -58,39 +65,23 @@ UserSchema.path('hashed_password').validate(function(v) {
 }, null);
 
 UserSchema.methods = {
-  authenticate: function(plainText) {
-    // if (!this.salt || !this.hashed_password) {
-    //   return false;
-    // }
-    // const hashedPassword = this.encryptPassword(plainText);
-  
-    // console.log('Entered Password:', plainText);
-    // console.log('Stored Hashed Password:', this.hashed_password);
-    // console.log('Generated Hashed Password:', hashedPassword);
-  
+  authenticate: function (plainText) {
     return this.encryptPassword(plainText) === this.hashed_password;
   },
-  
-  encryptPassword: function(password) {
-    // if (!this.salt || !password) return '';
+  encryptPassword: function (password) {
     if (!password) return '';
     try {
-      // const hashedPassword = crypto
       return crypto
         .createHmac('sha1', this.salt)
         .update(password)
         .digest('hex');
-  
-      console.log('Entered Password:', password);
-      console.log('Generated Hashed Password:', hashedPassword);
-  
-      return hashedPassword;
+
     } catch (err) {
       console.log(err);
       return '';
     }
   },
-  makeSalt: function() {
+  makeSalt: function () {
     return Math.round((new Date().valueOf() * Math.random())) + '';
   },
 };
