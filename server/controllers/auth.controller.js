@@ -36,11 +36,31 @@ const signout = (req, res) => {
         message: "signed out"
     })
 }
+// const requireSignin = expressjwt({
+//     secret: config.jwtSecret,
+//     algorithms: ["HS256"],
+//     userProperty: 'auth'
+// })
+
 const requireSignin = expressjwt({
     secret: config.jwtSecret,
     algorithms: ["HS256"],
-    userProperty: 'auth'
-})
+    userProperty: 'auth',
+    getToken: function fromHeaderOrQuerystring(req) {
+      // Check if the authorization token is present in the headers
+      if (
+        req.headers.authorization &&
+        req.headers.authorization.split(' ')[0] === 'Bearer'
+      ) {
+        return req.headers.authorization.split(' ')[1];
+      } else if (req.query && req.query.token) {
+        // Check if the authorization token is present in the query string
+        return req.query.token;
+      }
+      return null;
+    }
+  });
+
 const hasAuthorization = (req, res, next) => {
     const authorized = req.profile && req.auth && req.profile._id == req.auth._id
     if (!(authorized)) {
