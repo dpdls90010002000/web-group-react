@@ -1,24 +1,19 @@
-import express from 'express';
-import userCtrl from '../controllers/user.controller.js';
-import authCtrl from '../controllers/auth.controller.js';
+import express from 'express'
+import userCtrl from '../controllers/user.controller.js'
+import authCtrl from '../controllers/auth.controller.js'
 
-const router = express.Router();
-
+const router = express.Router()
 router.route('/api/users')
-    .get(userCtrl.list)
-    .post(userCtrl.create);
-
+	.get(userCtrl.list)
+	.post(userCtrl.create)
 router.route('/api/users/:userId')
-    .get(authCtrl.requireSignin, userCtrl.read)
-    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)
-    .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove);
-
-router.param('userId', userCtrl.userByID);
-<<<<<<< HEAD
+	.get(authCtrl.requireSignin, userCtrl.read)
+	.put(authCtrl.requireSignin, authCtrl.hasAuthorization,
+		userCtrl.update)
+	.delete(authCtrl.requireSignin, authCtrl.hasAuthorization,
+		userCtrl.remove)
+router.param('userId', userCtrl.userByID)
 router.route('/api/users').post(userCtrl.create)
-=======
-router.route('/api/users').post(userCtrl.create) 
->>>>>>> 62f42337cee9f1cd764dfc8b141d4630f4cb5b0c
 router.route('/api/users').get(userCtrl.list)
 router.param('userId', userCtrl.userByID)
 router.route('/api/users/:userId').get(userCtrl.read)
