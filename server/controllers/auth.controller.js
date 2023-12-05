@@ -35,11 +35,29 @@ const signout = (req, res) => {
         message: "signed out"
     })
 }
-const requireSignin = expressjwt({
-    secret: config.jwtSecret,
-    algorithms: ["HS256"],
-    userProperty: 'auth'
-})
+// const requireSignin = expressjwt({
+//     secret: config.jwtSecret,
+//     algorithms: ["HS256"],
+//     userProperty: 'auth'
+// })
+
+const requireSignin = (req, res, next) => {
+    console.log('Request Headers:', req.headers);
+  
+    const token = req.headers.cookie.split('t=')[1] || '';
+    
+    console.log(token);
+  
+    jwt.verify(token, config.jwtSecret, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({ error: "Failed to authenticate token" });
+      }
+  
+      req.auth = decoded;
+      next();
+    });
+  };
+
 const hasAuthorization = (req, res, next) => {
     const authorized = req.profile && req.auth && req.profile._id == req.auth._id
     if (!(authorized)) {

@@ -14,7 +14,11 @@ router.route('/api/users/:userId')
     .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove);
 
 router.param('userId', userCtrl.userByID);
+<<<<<<< HEAD
 router.route('/api/users').post(userCtrl.create)
+=======
+router.route('/api/users').post(userCtrl.create) 
+>>>>>>> 62f42337cee9f1cd764dfc8b141d4630f4cb5b0c
 router.route('/api/users').get(userCtrl.list)
 router.param('userId', userCtrl.userByID)
 router.route('/api/users/:userId').get(userCtrl.read)

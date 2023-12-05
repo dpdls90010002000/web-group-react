@@ -19,6 +19,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to ShoeStore application." });
 });
 */
+
+// process.on('uncaughtException', function (err) {
+//   console.log(err);
+// });
+
 app.listen(config.port, (err) => {
   if (err) {
     console.log(err);

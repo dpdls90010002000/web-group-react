@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser'
 import compress from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
-import Template from './../template.js';
+// import Template from './../template.js';
 import userRoutes from './routes/user.routes.js'
 import authRoutes from './routes/auth.routes.js'
 import shopRoutes from './routes/shop.routes.js'

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import User from '../models/user.model.js';
 // import extend from 'lodash/extend.js';
 // import errorHandler from './error.controller.js';
@@ -150,6 +151,34 @@ import config from './../../config/config.js'
 import stripe from 'stripe'
 
 const myStripe = stripe(config.stripe_test_secret_key)
+=======
+import User from '../models/user.model.js';
+import extend from 'lodash/extend.js';
+// import errorHandler from './error.controller.js';
+import errorHandler from './../helpers/dbErrorHandler.js'
+// import formidable from 'formidable'
+import { IncomingForm } from 'formidable';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import request from 'request'
+import config from './../../config/config.js'
+import stripe from 'stripe'
+//import { sendFile } from 'express';
+
+// Get the directory name of the current module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// const formidable = require('formidable');
+// Use path.join to construct the full file path
+const profileImagePath = path.join(__dirname, './../../client/assets/images/profile-pic.png');
+
+
+const myStripe = stripe(config.stripe_test_secret_key)
+const defaultPhoto = (req, res) => {
+  return res.sendFile(profileImagePath);
+};
+>>>>>>> 62f42337cee9f1cd764dfc8b141d4630f4cb5b0c
 
 const create = async (req, res) => {
   const user = new User(req.body)
@@ -185,6 +214,7 @@ const userByID = async (req, res, next, id) => {
 }
 
 const read = (req, res) => {
+<<<<<<< HEAD
   req.profile.hashed_password = undefined
   req.profile.salt = undefined
   return res.json(req.profile)
@@ -217,6 +247,61 @@ const update = async (req, res) => {
   }
 }
 
+=======
+  req.profile.hashed_password = undefined;
+  req.profile.salt = undefined;
+  return res.json(req.profile);
+};
+const update = async (req, res) => {
+  // let form = formidable.IncomingForm();
+  let form=new IncomingForm();
+  form.keepExtensions = true;
+
+  form.parse(req, async (err, fields, files) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Photo could not be uploaded"
+      });
+    }
+
+    let user = req.profile;
+    user = extend(user, fields);
+    user.updated = Date.now();
+
+    if (files.photo) {
+      user.photo.data = fs.readFileSync(files.photo.path);
+      user.photo.contentType = files.photo.type;
+    }
+
+    try {
+      await user.save();
+      user.hashed_password = undefined;
+      user.salt = undefined;
+      res.json(user);
+    } catch (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      });
+    }
+  });
+};
+// const updateUser = async (req, res) => {
+//   try {
+//     let user = req.profile;
+//     user = extend(user, req.body);
+//     user.updated = Date.now();
+
+//     await user.save();
+//     user.hashed_password = undefined;
+//     user.salt = undefined;
+//     res.json(user);
+//   } catch (err) {
+//     return res.status(400).json({
+//       error: errorHandler.getErrorMessage(err)
+//     });
+//   }
+// };
+>>>>>>> 62f42337cee9f1cd764dfc8b141d4630f4cb5b0c
 const remove = async (req, res) => {
   try {
     let user = req.profile
@@ -315,6 +400,7 @@ const createCharge = (req, res, next) => {
       })
   })
 }
+<<<<<<< HEAD
 
 export default {
   create,
@@ -328,3 +414,7 @@ export default {
   stripeCustomer,
   createCharge
 }
+=======
+// export default { defaultPhoto, create, userByID, read, list, remove, update, updateUser, isSeller, photo,stripe_auth,stripeCustomer,createCharge };
+export default { defaultPhoto, create, userByID, read, list, remove, update, isSeller, photo,stripe_auth,stripeCustomer,createCharge };
+>>>>>>> 62f42337cee9f1cd764dfc8b141d4630f4cb5b0c
