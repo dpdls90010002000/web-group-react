@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken'
 import { expressjwt } from "express-jwt";
 import config from './../../config/config.js'
 
-
 const signin = async (req, res) => {
     try {
         let user = await User.findOne({ "email": req.body.email })

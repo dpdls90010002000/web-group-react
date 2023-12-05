@@ -22,13 +22,13 @@ const UserSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String
   },
-  address: {
-    type: String,
-  },
-  phone: {
-    type: String,
-    trim: true,
-  },
+  // address: {
+  //   type: String,
+  // },
+  // phone: {
+  //   type: String,
+  //   trim: true,
+  // },
   created: {
     type: Date,
     default: Date.now,

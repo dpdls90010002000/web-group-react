@@ -1,36 +1,3 @@
-/*export default function Shop({match}) { 
-const [shop, setShop] = useState('') 
-const [error, setError] = useState('')
-useEffect(() => {
-const abortController = new AbortController() 
-const signal = abortController.signal
-read({
-shopId: match.params.shopId 
-}, signal).then((data) => {
-if (data.error) { 
-setError(data.error)} else { 
-setShop(data)
-} 
-})
-return function cleanup(){ 
-abortController.abort()
-}
-}, [match.params.shopId])
-... 
-}
-<CardContent>
-<Typography type="headline" component="h2"> 
-{shop.name}
-</Typography><br/>
-<Avatar src={logoUrl}/><br/>
-<Typography type="subheading" component="h2"> 
-{shop.description}
-</Typography><br/> 
-</CardContent>
-const logoUrl = shop._id
-? `/api/shops/logo/${shop._id}?${new Date().getTime()}` 
-: '/api/shops/defaultphoto'*/
-
 import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'

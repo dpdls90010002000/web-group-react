@@ -14,26 +14,26 @@ const productSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  size: {
-    type : Number,
-    required: true,
-    trim: true
-  },
-  color: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  price: {
-    type: Number,
-    required: "Price is required",
+  category: {
+    type: String
   },
   quantity: {
     type: Number,
     required: "Quantity is required",
   },
-  category: {
-    type: String
+  // size: {
+  //   type : Number,
+  //   required: true,
+  //   trim: true
+  // },
+  // color: {
+  //   type: String,
+  //   required: true,
+  //   trim: true
+  // },
+  price: {
+    type: Number,
+    required: "Price is required",
   },
   updated: Date,
   created: {
