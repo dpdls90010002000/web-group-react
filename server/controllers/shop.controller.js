@@ -2,12 +2,14 @@ import Shop from '../models/shop.model.js'
 import extend from 'lodash/extend.js'
 import errorHandler from './../helpers/dbErrorHandler.js'
 import formidable from 'formidable'
+// import { IncomingForm } from 'formidable'
 import fs from 'fs'
 //import defaultImage from './../../client/assets/images/default.png'
 
 const create = (req, res) => {
   console.log("no create");
-  let form = new formidable.IncomingForm()
+  const form = new formidable.IncomingForm();
+  console.log(form);
   form.keepExtensions = true
   form.parse(req, async (err, fields, files) => {
     if (err) {
@@ -18,7 +20,8 @@ const create = (req, res) => {
     let shop = new Shop(fields)
     shop.owner= req.profile
     if(files.image){
-      shop.image.data = fs.readFileSync(files.image.path)
+      console.log(files.image)
+      shop.image.data = fs.readFileSync(files.image.path).toString()
       shop.image.contentType = files.image.type
     }
     try {
