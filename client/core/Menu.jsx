@@ -38,11 +38,11 @@ const Menu = withRouter(({ history }) => (
             <HomeIcon />
           </IconButton>
         </Link>
-        <Link to="/shops/NA">
+        {/* <Link to="/shops/NA">
           <Button style={{ ...isActive(history, "/shops/all"), fontSize: "25px", important: "true", fontWeight: "bold" }}>Product</Button>
-        </Link>
+        </Link> */}
         <Link to="/shops/all">
-          <Button style={{ ...isActive(history, "/shops/all"), fontSize: "25px", important: "true", fontWeight: "bold" }}>Resell</Button>
+          <Button style={{ ...isActive(history, "/shops/all"), fontSize: "25px", important: "true", fontWeight: "bold" }}>Shops</Button>
         </Link>
         {/* <TextField
           type="text"
