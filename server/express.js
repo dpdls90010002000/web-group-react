@@ -19,9 +19,9 @@ const CURRENT_WORKING_DIR = process.cwd()
 app.use(express.static(path.join(CURRENT_WORKING_DIR,"dist/app")));
 
 // ...
-app.get('/', (req, res) => {
-    res.status(200).send(Template())
-})
+// app.get('/', (req, res) => {
+//     res.status(200).send(Template())
+// })
 // ...
 //Middleware
 app.use(express.json());
