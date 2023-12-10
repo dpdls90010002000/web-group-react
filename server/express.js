@@ -4,16 +4,19 @@ import cookieParser from 'cookie-parser'
 import compress from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
-// import Template from './../template.js';
+import Template from './../template.js';
 import userRoutes from './routes/user.routes.js'
 import authRoutes from './routes/auth.routes.js'
 import shopRoutes from './routes/shop.routes.js'
 import productRoutes from './routes/product.routes.js'
 import categoryRoutes from './routes/category.routes.js'
 import orderRoutes from './routes/order.routes.js'
+import path from 'path'
 
 const app = express()
 const CURRENT_WORKING_DIR = process.cwd()
+
+app.use(express.static(path.join(CURRENT_WORKING_DIR,"dist/app")));
 
 // ...
 app.get('/', (req, res) => {

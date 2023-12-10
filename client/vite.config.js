@@ -14,6 +14,7 @@ import react from "@vitejs/plugin-react";
 const { PORT = 3000 } = process.env;
 
 export default defineConfig({
+  base: './',
   plugins: [react({
       jsxRuntime: 'classic' // Add this line
     }
@@ -24,12 +25,13 @@ export default defineConfig({
         target: `http://localhost:${PORT}`,
         changeOrigin: true,
       },
+      '/auth': {
+        target: `http://localhost:${PORT}`,
+        changeOrigin: true,
+      },
     },
   },
   build: {
-    manifest: true,
-    rollupOptions: {
-      input: "./src/main.jsx",
-    },
+    outDir: '../dist/app',
   },
 });
